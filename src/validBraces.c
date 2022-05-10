@@ -22,7 +22,7 @@ void push(struct braceNode *node, int information){
     newNode->next = node;
     node = newNode;
 }
-
+//pops a node off the list'
 int pop(struct braceNode *node){
     char brace;
     struct braceNode *bracing;
