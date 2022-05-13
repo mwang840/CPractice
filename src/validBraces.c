@@ -1,14 +1,28 @@
 #include <stdbool.h>
+#include <limits.h>
 #include <stdio.h>
 #include "validBraces.h"
 //might be done with a struct and helper functions
 struct braceNode {
+    int capacity;
     char info;
-    struct braceNode *next;
-};
+    unsigned maxCapacity;
+    int *braceGang;
+};braces;
 //Pops the node off the stack
 int pop(struct braceNode *node);
 void push(struct braceNode *node, int information);
+
+//Checks to see if the stack is full
+int isFull(struct braceNode *node){
+    return node->capacity == node->maxCapacity - 1;
+}
+
+//Checks to see if the stack is empty
+int isEmpty(struct braceNode *node){
+    return node->capacity == -1;
+}
+
 
 //pushes the node onto the stack by first allocating the node in memory
 void push(struct braceNode *node, int information){
@@ -19,7 +33,6 @@ void push(struct braceNode *node, int information){
     }
     newNode->info = information;
     //sets the nodes next value
-    newNode->next = node;
     node = newNode;
 }
 //pops a node off the list'
@@ -33,7 +46,6 @@ int pop(struct braceNode *node){
     else{
         node = bracing;
         brace = bracing->info;
-        node = bracing->next;
         free(bracing);
         return brace;
     }
