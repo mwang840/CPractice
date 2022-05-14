@@ -11,7 +11,7 @@ struct braceNode {
 };braces;
 //Pops the node off the stack
 int pop(struct braceNode *node);
-void push(struct braceNode *node, int information);
+void push(char information);
 
 //Checks to see if the stack is full
 int isFull(struct braceNode *node){
@@ -24,8 +24,10 @@ int isEmpty(struct braceNode *node){
 }
 
 
+
+
 //pushes the node onto the stack by first allocating the node in memory
-void push(struct braceNode *node, int information){
+void push(char information){
     struct braceNode *newNode = (struct braceNode*)malloc(sizeof(newNode));
     //Checks to see if the node is null
     if(newNode == NULL){
@@ -33,7 +35,6 @@ void push(struct braceNode *node, int information){
     }
     newNode->info = information;
     //sets the nodes next value
-    node = newNode;
 }
 //pops a node off the list'
 int pop(struct braceNode *node){
@@ -59,8 +60,8 @@ bool valid_braces (const char *braces)
     bool nikocadoAvocadoBrace = false;
     //Make sure the char is not a null terminator
     while (braces[size] != '\0'){
-        if(braces[size] == '(' && braces[size+1] == ')'){
-            nikocadoAvocadoBrace = true;
+        if(braces[size] == '(' || braces[size] == '{' || braces[size] == '['){
+            push(braces[size]);
         }
         else if(braces[size] == '{' && braces[size+1] == '}'){
             nikocadoAvocadoBrace = true;
