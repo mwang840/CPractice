@@ -7,7 +7,7 @@ struct braceNode {
     int capacity;
     char info;
     unsigned maxCapacity;
-    int *braceGang;
+    int *array;
 };braces;
 //Pops the node off the stack
 int pop(struct braceNode *node);
@@ -23,7 +23,18 @@ int isEmpty(struct braceNode *node){
     return node->capacity == -1;
 }
 
-
+//creates a new stack
+struct braceNode *createStack(unsigned capacity){
+    //initalizes stack on memory
+    struct braceNode *stackInterchange = (struct braceNode*)malloc(sizeof(struct braceNode));
+    //Signs the capacity to the stack
+    stackInterchange->capacity = capacity;
+    //Initialize the information to a empty char
+    stackInterchange->info = "";
+    //Creates an initial array on the heap
+    stackInterchange->array = (int*)malloc(sizeof(stackInterchange->capacity) * sizeof(int));
+    return stackInterchange;
+}
 
 
 //pushes the node onto the stack by first allocating the node in memory
