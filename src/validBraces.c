@@ -9,8 +9,10 @@ struct braceNode {
     unsigned maxCapacity;
     int *array;
 };braces;
+
+struct braceNode *HEAD = NULL;
 //Pops the node off the stack
-int pop(struct braceNode *node);
+char pop(struct braceNode *node);
 void push(char information);
 
 //Checks to see if the stack is full
@@ -48,7 +50,7 @@ void push(char information){
     //sets the nodes next value
 }
 //pops a node off the list'
-int pop(struct braceNode *node){
+char pop(struct braceNode *node){
     char brace;
     struct braceNode *bracing;
     //retuns zero if the pointer is null
@@ -68,22 +70,12 @@ int pop(struct braceNode *node){
 bool valid_braces (const char *braces)
 {
     int size = 0;
-    bool nikocadoAvocadoBrace = false;
-    //Make sure the char is not a null terminator
-    while (braces[size] != '\0'){
+    while(braces[size] != '\0'){
         if(braces[size] == '(' || braces[size] == '{' || braces[size] == '['){
             push(braces[size]);
         }
-        else if(braces[size] == '{' && braces[size+1] == '}'){
-            nikocadoAvocadoBrace = true;
-        }
-        else if(braces[size] == '[' && braces[size+1] == ']'){
-            nikocadoAvocadoBrace = true;
-        }
-        else{
-            nikocadoAvocadoBrace = false;
-        }
+        
         size++;
     }
-	return nikocadoAvocadoBrace;
+    return false;
 }
