@@ -7,18 +7,20 @@ bool xo(const char *str);
 
 int main(){
     const char *ex = "ooxx";
-    (xo(ex));
+    bool xoro = xo(ex);
+    printf(xoro);
     return 0;
 }
 
 bool xo(const char *str){
-    int x, o = 0;
-    char* temp = &str[0];
+    int x = 0;
+    int o = 0;
+    const char* temp = &str[0];
     while(*temp != '\0'){
-        if(str[0] == 'x'){
+        if(*temp == 'x'|| *temp == 'X'){
             x++;
         }
-        else if(str[0]== 'o'){
+        else if(*temp == 'o'|| *temp == 'O'){
             o++;
         }
         temp++;
